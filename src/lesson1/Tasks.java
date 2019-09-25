@@ -1,4 +1,6 @@
-public class Lesson1 {
+package lesson1;
+
+public class Tasks {
     public static void main(String[] args) {
         task1();
         task2();
