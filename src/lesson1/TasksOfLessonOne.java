@@ -1,6 +1,6 @@
 package lesson1;
 
-public class Tasks {
+public class TasksOfLessonOne {
     public static void main(String[] args) {
         task1();
         task2();
