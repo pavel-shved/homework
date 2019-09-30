@@ -23,7 +23,7 @@ public class TasksOfLessonTwo {
         runTask16();
         runTask17();
         runTask18();
-//        runTask19();
+        runTask19();
         runTask20();
     }
 
@@ -44,6 +44,16 @@ public class TasksOfLessonTwo {
     private static void printArray(String[] array) {
         for (String s : array) {
             System.out.print(s + " ");
+        }
+        System.out.println();
+    }
+
+    private static void printMatrix(int[][] matrix){
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
         }
         System.out.println();
     }
@@ -487,6 +497,27 @@ public class TasksOfLessonTwo {
 
     //Task 19. Write a Java program to add two matrices of the same size.
 //        Задача 19. Напишите Java-программу для добавления двух матриц одинакового размера.
+    private static void runTask19() {
+        int[][] numMatrix1 = new int[][]{{1, 4, -3, 6, 5, 7, 12},{2, 2, 3, 5, 1, 0 ,0}};
+        int[][] numMatrix2 = new int[][]{{0, 3, 2, 1, 3, 0, 1},{3, -2, -3, 0, 0, 2 ,3}};
+        int[][] sumMatrix = new int[numMatrix1.length][numMatrix1[0].length];
+        System.out.println("19) Матрица1 на входе: ");
+        printMatrix(numMatrix1);
+        System.out.println("Матрица2 на входе: ");
+        printMatrix(numMatrix2);
+
+        for (int i = 0; i < numMatrix1.length; i++) {
+            for (int j = 0; j < numMatrix1[i].length; j++) {
+                sumMatrix[i][j] = numMatrix1[i][j] + numMatrix2[i][j];
+            }
+        }
+
+        System.out.println("Сумма матрица1+матрица2 на выходе: ");
+        printMatrix(sumMatrix);
+
+
+    }
+
 
 
     //Task 20. Write a Java program to convert an array to ArrayList.
