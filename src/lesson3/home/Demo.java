@@ -1,5 +1,7 @@
 package lesson3.home;
 
+import lesson4.home.ShipTypes;
+
 import java.util.Random;
 
 public class Demo {
@@ -11,7 +13,14 @@ public class Demo {
 
         Ship[] ships = new Ship[namesArray.length];
         for (int i = 0; i < namesArray.length; i++) {
-            Ship ship = new Ship(random.nextDouble() * 1000, random.nextInt(maxDecks) + 1, random.nextDouble() * 10000, namesArray[i],countryArray[random.nextInt(countryArray.length)]);
+            Ship ship = new Ship(random.nextDouble() * 1000,
+                                random.nextInt(maxDecks) + 1,
+                                random.nextDouble() * 10000,
+                                namesArray[i],
+                                countryArray[random.nextInt(countryArray.length)],
+                                false,
+                                ShipTypes.MILITARY
+            );
             ships[i] = ship;
         }
 
@@ -48,7 +57,6 @@ public class Demo {
         if (tempCounter == 0){
             System.out.println("в массиве нет");
         }
-
 
     }
 }

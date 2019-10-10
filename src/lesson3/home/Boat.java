@@ -1,6 +1,7 @@
-package lesson4.home;
+package lesson3.home;
 
-import lesson3.home.Ship;
+import lesson4.home.ShipTypes;
+
 import java.util.Objects;
 
 public class Boat extends Ship {
@@ -11,18 +12,18 @@ public class Boat extends Ship {
         countBoat = 0;
     }
 
-    public Boat() {
+    public Boat(){
+        super();
         countBoat++;
     }
 
     public Boat(int passengers) {
-        super();
         this.passengers = passengers;
         countBoat++;
     }
 
-    public Boat(double mass, int decks, double price, String name, String releaseDate, int passengers) {
-        super(mass, decks, price, name, releaseDate);
+    public Boat(double mass, int decks, double price, String name, String country, boolean isIncapable, ShipTypes shipTypes, int passengers) {
+        super(mass, decks, price, name, country, isIncapable, ShipTypes.FISHING);
         this.passengers = passengers;
         countBoat++;
     }

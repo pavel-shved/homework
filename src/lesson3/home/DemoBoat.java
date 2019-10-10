@@ -1,4 +1,6 @@
-package lesson4.home;
+package lesson3.home;
+
+import lesson4.home.ShipTypes;
 
 import java.util.Random;
 
@@ -10,7 +12,7 @@ public class DemoBoat {
         Boat[] boats = new Boat[5];
         for (int i = 0; i < boats.length; i++) {
             if (i < 1) {
-                boats[i] = new Boat(random.nextDouble() * 1000, random.nextInt(10) + 1, random.nextDouble() * 10000, "Victory","England",random.nextInt(100));
+                boats[i] = new Boat(random.nextDouble() * 1000, random.nextInt(10) + 1, random.nextDouble() * 10000, "Victory","England",false, ShipTypes.FISHING,random.nextInt(100));
             } else if (i < 3) {
                 boats[i] = new Boat(random.nextInt(100));
             } else {
