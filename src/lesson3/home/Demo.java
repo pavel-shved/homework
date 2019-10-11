@@ -1,7 +1,6 @@
 package lesson3.home;
 
 import lesson4.home.ShipTypes;
-
 import java.util.Random;
 
 public class Demo {
