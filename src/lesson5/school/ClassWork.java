@@ -22,5 +22,6 @@ public class ClassWork {
         System.out.println("     asdasdasd      ".substring(1));
         System.out.println("     asdasdasd      ".toLowerCase());
         System.out.println("     asdasdasd      ".toUpperCase());
+
     }
 }
