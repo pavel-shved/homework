@@ -1,5 +1,8 @@
 package lesson5.home;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TasksOfString {
     public static void main(String[] args) {
         String defaultStr = "Строка - объект класса String. Строка является неизменяемой (immutable). Ссылку на объект класса String можно изменить так, чтобы она указывала на другой объект.";
@@ -8,15 +11,17 @@ public class TasksOfString {
         task1(defaultStr);
         task2(defaultStr);
 
-        defaultStr = "1, 2, 3 - целые ч2исла, также как и 11, и 111. А вот 11.1 - число дробное! ";
+        String strWithNumbers = "1, 2, 3 - целые числа, также как и 11, и 111. А вот 11.1 - число дробное! ";
         System.out.println("3) Строка на входе:");
-        System.out.println(defaultStr);
-        task3(defaultStr);
-//        task4();
-//        task5();
-//        task6();
-//        task7();
-//        task8();
+        System.out.println(strWithNumbers);
+        task3(strWithNumbers);
+        task4(defaultStr);
+        task5(defaultStr);
+        task6(defaultStr);
+        task7(defaultStr);
+
+        String strWithQuestion = "Строка - объект класса String. Строка является неизменяемой (immutable). Ссылку на объект класса String можно изменить так, чтобы она указывала на другой объект?";
+        task8(strWithQuestion);
     }
 
     //1. Преобразовать текст так, чтобы каждое слово начиналось с заглавной буквы.
@@ -80,7 +85,6 @@ public class TasksOfString {
         int sum = 0;
         for (String s : strArray) {
             if (!s.contains(".") || (s.contains(".") && s.indexOf(".") == s.length() - 1)) {
-
                 char[] symbols = s.toCharArray();
                 boolean tempCheck = isNumber(symbols[0]);
                 String tempStr = "";
@@ -89,20 +93,20 @@ public class TasksOfString {
                 }
 
                 for (int i = 1; i < symbols.length; i++) {
-                    if (isNumber(symbols[i])) {
-                        if (tempCheck) {
+                    if (tempCheck) {
+                        if (isNumber(symbols[i])) {
                             tempStr = tempStr + symbols[i];
                         } else {
-                            if (!tempStr.equals("")){
-                                sum = sum + Integer.parseInt(tempStr);
-                            }
+                            tempCheck = false;
                         }
-                        tempCheck = true;
                     } else {
-                        tempCheck = false;
+                        if (isNumber(symbols[i])) {
+                            tempStr = tempStr + symbols[i];
+                            tempCheck = true;
+                        }
                     }
                 }
-                if (!tempStr.equals("")){
+                if (!tempStr.equals("")) {
                     sum = sum + Integer.parseInt(tempStr);
                 }
 
@@ -112,24 +116,132 @@ public class TasksOfString {
     }
 
     //4. В каждом слове текста k-ю букву заменить заданным символом. Если  k больше длины слова, корректировку не выполнять.
-    private static void task4() {
+    private static void task4(String strIn) {
+        int k = 4;
+        char symbol = '^';
+        System.out.println("4) Заменили " + k + " букву каждого слова на символ '" + symbol + "':");
 
+        String[] strArray = strIn.split(" ");
+        String strOut = "";
+        for (String s : strArray) {
+            if (k > s.length()) {
+                strOut = strOut + " " + s;
+            } else {
+                String tempStr;
+                char[] word = s.toCharArray();
+                word[k - 1] = symbol;
+                tempStr = new String(word);
+                if (strOut.equals("")) {
+                    strOut = tempStr;
+                } else {
+                    strOut = strOut + " " + tempStr;
+                }
+
+            }
+        }
+        System.out.println(strOut);
     }
 
     //5. Удалить из текста его часть, заключенную между двумя символами, которые вводятся (например, между скобками ‘(’ и ‘)’ или между звездочками ‘*’ и т.п.).
-    private static void task5() {
+    private static void task5(String strIn) {
+        char symbolStart = '(';
+        char symbolFinish = ')';
+        int startIndex = 0;
+        int finishIndex = 0;
+        System.out.println("5) Удаляем часть текста между '" + symbolStart + "' и '" + symbolFinish + "'.");
+        if (strIn.contains("(") && strIn.contains(")")) {
+            String strOut = "";
+            char[] symbols = strIn.toCharArray();
+            for (int i = 0; i < symbols.length; i++) {
+                if (symbols[i] == symbolStart) {
+                    startIndex = i;
+                }
+                if (symbols[i] == symbolFinish) {
+                    finishIndex = i;
+                }
+            }
+            strOut = strIn.substring(0, startIndex + 1) + strIn.substring(finishIndex);
+            System.out.println(strOut);
+        } else System.out.println("В строке на входе нет символов '" + symbolStart + "' и '" + symbolFinish + "'.");
+
     }
 
     // 6.  Найти и напечатать, сколько раз повторяется в тексте каждое слово, которое встречается в нем.
-    private static void task6() {
+    private static void task6(String strIn) {
+        System.out.println("6) Столько раз повторяется в тексте каждое слово:");
+        String[] strArray = strIn.split(" ");
+        List<String> wordsList = new ArrayList<>();
+        for (String s : strArray) {
+            if (!isLetter(s.charAt(s.length() - 1))) {
+                String word = s.substring(0, s.length() - 1);
+                if (!word.equals("")) {
+                    wordsList.add(word);
+                }
+            } else {
+                wordsList.add(s);
+            }
+        }
+        for (String s : wordsList) {
+            int counter = 0;
+            for (String s1 : wordsList) {
+                if (s.equalsIgnoreCase(s1)) {
+                    counter++;
+                }
+            }
+            System.out.println(s + " " + counter);
+        }
+    }
+
+    private static boolean isVowel(char c) {
+        char[] vowels = {'А', 'а', 'О', 'о', 'У', 'у', 'Ы', 'ы', 'Э', 'э', 'Я', 'я', 'Ё', 'ё', 'Ю', 'ю', 'И', 'и', 'Е', 'е', 'A', 'a', 'E', 'e', 'I', 'i', 'Y', 'y', 'U', 'u', 'O', 'o'};
+        for (char vowel : vowels) {
+            if (c == vowel) return true;
+        }
+        return false;
     }
 
     //7. Найти, каких букв, гласных или согласных, больше в каждом предложении текста
-    private static void task7() {
+    private static void task7(String strIn) {
+        System.out.println("7) Гласные и согласные");
+        String[] sentences = strIn.split("[.!?] ");
+        for (String sentence : sentences) {
+            int countVowel = 0;
+            int countConsonant = 0;
+            char[] sentenceArray = sentence.toCharArray();
+            for (char c : sentenceArray) {
+                if (isLetter(c)) {
+                    if (isVowel(c)) {
+                        countVowel++;
+                    } else countConsonant++;
+                }
+            }
+            System.out.println(sentence + " (Гласных = " + countVowel + ", Согласных = " + countConsonant + ")");
+        }
     }
 
     //8. Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины
-    private static void task8() {
+    private static void task8(String strIn) {
+        System.out.println("8) Сторка на входе:");
+        System.out.println(strIn);
+        int wordLength = 6;
+        List<String> wordList = new ArrayList<>();
+        System.out.println("Слова с длинной " + wordLength + " во всех вопросительных предложениях:");
+        String str = strIn.replaceAll("[?]", "<question>?");
+        String[] sentences = str.split("[.!?] ");
+        for (String sentence : sentences) {
+            if (sentence.contains("<question>")) {
+                sentence = sentence.substring(0, sentence.indexOf("<question>"));
+                String[] words = sentence.split(" ");
+                for (String word : words) {
+                    if (word.length() == wordLength && !wordList.contains(word)) {
+                        wordList.add(word);
+                    }
+                }
+            }
+        }
+        for (String s : wordList) {
+            System.out.println(s);
+        }
     }
 
 }
