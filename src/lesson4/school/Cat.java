@@ -2,7 +2,7 @@ package lesson4.school;
 
 import java.util.Objects;
 
-public class Cat extends Animal {
+public class Cat extends Animal implements Comparable<Cat> {
     private String ownerName;
     private String catType;
 
@@ -61,5 +61,18 @@ public class Cat extends Animal {
     public long run(long someDistance) {
         System.out.println("Run, boy, run! " + someDistance);
         return someDistance;
+    }
+
+    @Override
+    public int compareTo(Cat o) {
+        if (this.getWeight() > o.getWeight()) {
+            return 1;
+        } else {
+            if (this.getWeight() < o.getWeight()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
     }
 }
