@@ -192,7 +192,7 @@ public class TasksOfString {
         }
     }
 
-    private static boolean isVowel(char c) {
+    public static boolean isVowel(char c) {
         char[] vowels = {'А', 'а', 'О', 'о', 'У', 'у', 'Ы', 'ы', 'Э', 'э', 'Я', 'я', 'Ё', 'ё', 'Ю', 'ю', 'И', 'и', 'Е', 'е', 'A', 'a', 'E', 'e', 'I', 'i', 'Y', 'y', 'U', 'u', 'O', 'o'};
         for (char vowel : vowels) {
             if (c == vowel) return true;

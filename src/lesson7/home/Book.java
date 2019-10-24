@@ -2,13 +2,14 @@ package lesson7.home;
 
 import java.util.Objects;
 
-public class Book {
+public class Book implements Comparable<Book> {
     private String name;
     private String authorName;
     private String authorSurName;
     private String authorPatronymic;
 
-    public Book(){}
+    public Book() {
+    }
 
     public Book(String name, String authorName, String authorSurName, String authorPatronymic) {
         this.name = name;
@@ -49,6 +50,7 @@ public class Book {
         this.authorPatronymic = authorPatronymic;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,4 +77,8 @@ public class Book {
                 '}';
     }
 
+    @Override
+    public int compareTo(Book o) {
+        return this.getName().compareTo(o.getName());
+    }
 }
